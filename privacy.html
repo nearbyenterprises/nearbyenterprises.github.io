@@ -25,7 +25,7 @@
         nav {
             background-color: white;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 1rem 5%;
+            padding: 1rem 0 1rem 5%; /* Top Right Bottom Left */
             position: fixed;
             width: 100%;
             top: 0;
@@ -44,15 +44,19 @@
             color: var(--fuscia);
         }
 
-        .container {
-            max-width: 800px;
-            width: 90%;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(46, 49, 146, 0.1);
-        }
+
+.container {
+    max-width: 800px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+}
+
+.content {
+    padding-top: 4rem; /* To prevent content from being hidden under fixed nav */
+    width: 90%;
+    max-width: 800px;
+}
 
         h1 {
             color: var(--purple-dark);
