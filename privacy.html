@@ -41,14 +41,7 @@
         }
 
         nav a:hover {
-            color: #FF00FF; /* fuscia fallback */
-        }
-
-        .container {
-            max-width: 800px;
-            width: 90%;
-            margin: 0 auto;
-            padding: 1rem 2rem;
+            color: #FF00FF;
         }
 
         .content {
@@ -87,15 +80,8 @@
             margin-bottom: 2rem;
         }
 
-        .back-link {
+        a.email-link {
             color: var(--purple-dark);
-            text-decoration: none;
-            padding: 1rem;
-            align-self: flex-start;
-            margin: 1rem 0 0 5%;
-        }
-
-        .back-link:hover {
             text-decoration: underline;
         }
     </style>
@@ -117,36 +103,37 @@
         <h2>Information We Collect</h2>
         <p>To provide our services, we collect the following personal information:</p>
         <ul>
-            <li>Name (First and Last)</li>
-            <li>Email Address</li>
-            <li>Phone Number (optional)</li>
-            <li>Street Address (used to calculate your location and show nearby talents; never public)</li>
-            <li>Business Name (optional, for talents)</li>
-            <li>Website and Social Links (optional, provided by talents)</li>
+            <li>Name (First and Last): To identify you within the service.</li>
+            <li>Email Address: For account creation, authentication, and essential communication.</li>
+            <li>Phone Number: As an optional contact method for other users.</li>
+            <li>Street Address: To calculate your location and show you nearby talents. Your full address is never public.</li>
+            <li>Business Name (Optional): For users who operate as a talent.</li>
+            <li>Website and Social Links (Optional): Provided by talents to showcase their services and online presence.</li>
         </ul>
         <p>Nearby does not collect or process any payment or financial information, as all transactions occur offline between users and talents.</p>
 
         <h2>How We Use Your Information</h2>
         <p>Your information is used exclusively to:</p>
         <ul>
-            <li>Create and manage your account</li>
-            <li>Display relevant talents and services within your preferred neighborhood radius</li>
-            <li>Provide access to talents’ contact information for offline communication</li>
-            <li>Send important service-related notifications</li>
+            <li>Create and manage your account.</li>
+            <li>Display relevant talents and services within your preferred neighborhood radius.</li>
+            <li>Provide access to talents' contact information for offline communication.</li>
+            <li>Send important service-related notifications.</li>
         </ul>
 
         <h2>Information Visibility & Control</h2>
         <p>You have granular control over your information's visibility. By default, your personal contact information is private. You can choose to make parts of your information visible to other users, including:</p>
         <ul>
-            <li>Contact email address</li>
-            <li>Phone number</li>
-            <li>Apartment or unit number</li>
-            <li>Street number</li>
+            <li>Your contact email address.</li>
+            <li>Your phone number.</li>
+            <li>Your apartment or unit number.</li>
+            <li>Your street number.</li>
         </ul>
-        <p>Your first name, last name, and street name are the minimum information visible to other users in your radius if you are listed as a talent. Most communications and transactions between users and talents occur outside the Nearby app (e.g., phone or email), and you are responsible for the information shared during those interactions.</p>
+        <p>Your first name, last name, and street name are the minimum information visible to other users in your radius if you are listed as a talent.</p>
+        <p>Please note that most communications and transactions between users and talents occur outside the Nearby app (such as by phone or email). You are responsible for the information you share during those interactions.</p>
 
         <h2>Data Sharing with Third Parties</h2>
-        <p>We do not sell or rent your personal information. We only share limited data with essential third-party service providers as necessary to operate and maintain core app functionality, including cloud hosting, authentication, and communication services (e.g., Google Firebase and Brevo).</p>
+        <p>We do not sell or rent your personal information. We only share limited data with essential third-party service providers as necessary to operate and maintain core app functionality — including, but not limited to, cloud hosting, authentication, and communication services (such as Google Firebase and Brevo).</p>
         <p>These providers are bound by their own privacy policies and data protection obligations to safeguard your information and may only process it on our behalf for legitimate operational purposes.</p>
         <p>Location data is processed solely to provide proximity-based features within the app and is not shared with any external mapping or advertising providers.</p>
 
@@ -156,10 +143,10 @@
         <h2>Your Rights</h2>
         <p>You have the right to:</p>
         <ul>
-            <li>Access and review your personal information</li>
-            <li>Update your information and modify visibility settings at any time through your profile</li>
-            <li>Delete your account, permanently removing personal data from our active systems</li>
-            <li>Report misuse, data concerns, or inappropriate behavior through the in-app Feedback & Reporting tool</li>
+            <li>Access and review your personal information.</li>
+            <li>Update your information and modify your visibility settings at any time through your profile.</li>
+            <li>Delete your account, which will permanently remove your personal data from our active systems.</li>
+            <li>You may also report any misuse, data concerns, or inappropriate behavior through the in-app Feedback & Reporting tool.</li>
         </ul>
 
         <h2>Children's Privacy</h2>
@@ -169,7 +156,7 @@
         <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes. Continued use of the app after such changes constitutes your acceptance of the new policy.</p>
 
         <h2>Contact Us</h2>
-        <p>If you have questions about this Privacy Policy, please contact us at <a href="mailto:nearby.feedback@gmail.com">nearby.feedback@gmail.com</a>.</p>
+        <p>If you have questions about this Privacy Policy, please <a class="email-link" href="mailto:nearby.feedback@gmail.com">contact us</a>.</p>
     </div>
 </body>
 </html>
