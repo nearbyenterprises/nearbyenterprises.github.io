@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account - Nearby</title>
+    <style>
+        :root {
+            --dark-purple: #2E3192;
+            --text-dark: #424242;
+            --text-light: #66727C;
+            --bg-primary: #F7F4FF;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--purple-dark);
+            text-decoration: none;
+            margin-right: 2rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--fuscia);
+        }
+
+        .container {
+            max-width: 600px;
+            width: 90%;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(46, 49, 146, 0.1);
+        }
+
+        h1 {
+            color: var(--dark-purple);
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        ul {
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .back-link {
+            color: var(--dark-purple);
+            text-decoration: none;
+            padding: 1rem;
+            align-self: flex-start;
+            margin: 1rem 0 0 5%;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+   <a href="index.html" class="back-link">← Back to Home</a>
+
+    <div class="container">
+        <h1>Delete Your Nearby Account</h1>
+        <p>
+            You can permanently delete your <strong>Nearby</strong> account at any time directly from within the app.
+            Once your account is deleted, all associated data will be removed from our systems. This action is irreversible.
+        </p>
+
+        <h2>How to delete your account</h2>
+        <ul>
+            <li>Open the <strong>Nearby</strong> app.</li>
+            <li>Go to <strong>My Profile → Name & Password</strong>.</li>
+            <li>Tap <strong>Delete Account</strong>.</li>
+            <li>Confirm your choice when prompted.</li>
+        </ul>
+
+        <p>
+            After confirmation, your account and all related data (including your name, email, and profile photo) will be permanently deleted from our servers.
+        </p>
+
+        <p>
+            We do not retain any personal data after account deletion, except where required by law (for example, for fraud prevention or compliance). 
+            Any retained data is securely stored and automatically deleted after the applicable retention period.
+        </p>
+
+        <p>
+            If you experience any issues deleting your account, please contact us at 
+            <a href="mailto:nearby.feedback@gmail.com">nearby.feedback@gmail.com</a>.
+        </p>
+    </div>
+</body>
+</html>
