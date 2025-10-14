@@ -1,162 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Nearby</title>
-    <style>
-        :root {
-            --purple-dark: #2E3192;
-            --text-dark: #424242;
-            --text-light: #66727C;
-            --bg-primary: #F7F4FF;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy - Nearby</title>
+  <style>
+    :root {
+      --purple-dark: #25277d; /* darker for contrast */
+      --focus-color: #ff00ff;
+      --text-dark: #333333;
+      --text-light: #5a6470;
+      --bg-primary: #f7f4ff;
+    }
 
-        body {
-            background-color: var(--bg-primary);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    body {
+      background-color: var(--bg-primary);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
 
-        nav {
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 1rem 0 1rem 5%;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-        }
+    nav[aria-label="Main navigation"] {
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 1rem 5%;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+    }
 
-        nav a {
-            color: var(--purple-dark);
-            text-decoration: none;
-            margin-right: 2rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
+    nav a {
+      color: var(--purple-dark);
+      text-decoration: none;
+      margin-right: 2rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+      padding: 0.25rem 0.5rem;
+    }
 
-        nav a:hover {
-            color: #FF00FF;
-        }
+    nav a:hover,
+    nav a:focus {
+      color: var(--focus-color);
+      outline: none;
+    }
 
-        .content {
-            padding-top: 4rem;
-            width: 90%;
-            max-width: 800px;
-        }
+    nav a:focus-visible {
+      outline: 3px solid var(--focus-color);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
 
-        h1 {
-            color: var(--purple-dark);
-            font-size: 2.25rem;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-            letter-spacing: -0.02em;
-        }
+    main[role="main"] {
+      padding-top: 5rem;
+      width: 90%;
+      max-width: 800px;
+    }
 
-        h2 {
-            color: var(--purple-dark);
-            font-size: 1.5rem;
-            margin-top: 2rem;
-            font-weight: 500;
-        }
+    h1 {
+      color: var(--purple-dark);
+      font-size: 2.25rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
 
-        p, ul {
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
+    h2 {
+      color: var(--purple-dark);
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      font-weight: 600;
+    }
 
-        ul {
-            padding-left: 1.5rem;
-        }
+    p,
+    ul,
+    ol {
+      margin-bottom: 1rem;
+    }
 
-        .last-updated {
-            color: var(--text-light);
-            font-style: italic;
-            margin-bottom: 2rem;
-        }
+    ul,
+    ol {
+      padding-left: 1.5rem;
+    }
 
-        a.email-link {
-            color: var(--purple-dark);
-            text-decoration: underline;
-        }
-    </style>
+    .last-updated {
+      color: var(--text-light);
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+
+    a.email-link {
+      color: var(--purple-dark);
+      text-decoration: underline;
+    }
+
+    a.email-link:focus-visible {
+      outline: 3px solid var(--focus-color);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="child_safety_policy.html">Child Safety Policy</a>
-        <a href="delete_account.html">Delete Account</a>        
-    </nav>
+  <nav aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="privacy.html" aria-current="page">Privacy Policy</a>
+    <a href="child_safety_policy.html">Child Safety Policy</a>
+    <a href="delete_account.html">Delete Account</a>
+  </nav>
 
-    <div class="content">
-        <h1>Privacy Policy</h1>
-        <p class="last-updated">Last Updated: October 2025</p>
+  <main role="main">
+    <h1>Privacy Policy</h1>
+    <p class="last-updated">Last Updated: October 2025</p>
 
-        <p>Welcome to Nearby! Your privacy matters to us. This Privacy Policy explains what personal information we collect, how we use it, and the choices you have about your data. By using the Nearby app, you agree to the practices described here.</p>
+    <p>Welcome to Nearby! Your privacy matters to us. This Privacy Policy explains what personal information we collect, how we use it, and the choices you have about your data. By using the Nearby app, you agree to the practices described here.</p>
 
-        <h2>Information We Collect</h2>
-        <p>To provide our services, we collect the following personal information:</p>
-        <ul>
-            <li>Name (First and Last): To identify you within the service.</li>
-            <li>Email Address: For account creation, authentication, and essential communication.</li>
-            <li>Phone Number: As an optional contact method for other users.</li>
-            <li>Street Address: To calculate your location and show you nearby talents. Your full address is never public.</li>
-            <li>Business Name (Optional): For users who operate as a talent.</li>
-            <li>Website and Social Links (Optional): Provided by talents to showcase their services and online presence.</li>
-        </ul>
-        <p>Nearby does not collect or process any payment or financial information, as all transactions occur offline between users and talents.</p>
+    <h2>Information We Collect</h2>
+    <p>To provide our services, we collect the following personal information:</p>
+    <ul>
+      <li>Name (First and Last): To identify you within the service.</li>
+      <li>Email Address: For account creation, authentication, and essential communication.</li>
+      <li>Phone Number: As an optional contact method for other users.</li>
+      <li>Street Address: To calculate your location and show you nearby talents. Your full address is never public.</li>
+      <li>Business Name (Optional): For users who operate as a talent.</li>
+      <li>Website and Social Links (Optional): Provided by talents to showcase their services and online presence.</li>
+    </ul>
+    <p>Nearby does not collect or process any payment or financial information, as all transactions occur offline between users and talents.</p>
 
-        <h2>How We Use Your Information</h2>
-        <p>Your information is used exclusively to:</p>
-        <ul>
-            <li>Create and manage your account.</li>
-            <li>Display relevant talents and services within your preferred neighborhood radius.</li>
-            <li>Provide access to talents' contact information for offline communication.</li>
-            <li>Send important service-related notifications.</li>
-        </ul>
+    <h2>How We Use Your Information</h2>
+    <p>Your information is used exclusively to:</p>
+    <ul>
+      <li>Create and manage your account.</li>
+      <li>Display relevant talents and services within your preferred neighborhood radius.</li>
+      <li>Provide access to talents' contact information for offline communication.</li>
+      <li>Send important service-related notifications.</li>
+    </ul>
 
-        <h2>Information Visibility & Control</h2>
-        <p>You have granular control over your information's visibility. By default, your personal contact information is private. You can choose to make parts of your information visible to other users, including:</p>
-        <ul>
-            <li>Your contact email address.</li>
-            <li>Your phone number.</li>
-            <li>Your apartment or unit number.</li>
-            <li>Your street number.</li>
-        </ul>
-        <p>Your first name, last name, and street name are the minimum information visible to other users in your radius if you are listed as a talent.</p>
-        <p>Please note that most communications and transactions between users and talents occur outside the Nearby app (such as by phone or email). You are responsible for the information you share during those interactions.</p>
+    <h2>Information Visibility & Control</h2>
+    <p>You have granular control over your information's visibility. By default, your personal contact information is private. You can choose to make parts of your information visible to other users, including:</p>
+    <ul>
+      <li>Your contact email address.</li>
+      <li>Your phone number.</li>
+      <li>Your apartment or unit number.</li>
+      <li>Your street number.</li>
+    </ul>
+    <p>Your first name, last name, and street name are the minimum information visible to other users in your radius if you are listed as a talent.</p>
+    <p>Please note that most communications and transactions between users and talents occur outside the Nearby app (such as by phone or email). You are responsible for the information you share during those interactions.</p>
 
-        <h2>Data Sharing with Third Parties</h2>
-        <p>We do not sell or rent your personal information. We only share limited data with essential third-party service providers as necessary to operate and maintain core app functionality — including, but not limited to, cloud hosting, authentication, and communication services (such as Google Firebase and Brevo).</p>
-        <p>These providers are bound by their own privacy policies and data protection obligations to safeguard your information and may only process it on our behalf for legitimate operational purposes.</p>
-        <p>Location data is processed solely to provide proximity-based features within the app and is not shared with any external mapping or advertising providers.</p>
+    <h2>Data Sharing with Third Parties</h2>
+    <p>We do not sell or rent your personal information. We only share limited data with essential third-party service providers as necessary to operate and maintain core app functionality — including, but not limited to, cloud hosting, authentication, and communication services (such as Google Firebase and Brevo).</p>
+    <p>These providers are bound by their own privacy policies and data protection obligations to safeguard your information and may only process it on our behalf for legitimate operational purposes.</p>
+    <p>Location data is processed solely to provide proximity-based features within the app and is not shared with any external mapping or advertising providers.</p>
 
-        <h2>Data Security</h2>
-        <p>We implement reasonable administrative, technical, and physical safeguards to protect your personal information from unauthorized access, modification, or disclosure.</p>
+    <h2>Data Security</h2>
+    <p>We implement reasonable administrative, technical, and physical safeguards to protect your personal information from unauthorized access, modification, or disclosure.</p>
 
-        <h2>Your Rights</h2>
-        <p>You have the right to:</p>
-        <ul>
-            <li>Access and review your personal information.</li>
-            <li>Update your information and modify your visibility settings at any time through your profile.</li>
-            <li>Delete your account, which will permanently remove your personal data from our active systems.</li>
-            <li>You may also report any misuse, data concerns, or inappropriate behavior through the in-app Feedback & Reporting tool.</li>
-        </ul>
+    <h2>Your Rights</h2>
+    <p>You have the right to:</p>
+    <ul>
+      <li>Access and review your personal information.</li>
+      <li>Update your information and modify your visibility settings at any time through your profile.</li>
+      <li>Delete your account, which will permanently remove your personal data from our active systems.</li>
+      <li>You may also report any misuse, data concerns, or inappropriate behavior through the in-app Feedback & Reporting tool.</li>
+    </ul>
 
-        <h2>Children's Privacy</h2>
-        <p>Our service is not directed to individuals under the age of 18. We do not knowingly collect personal information from children.</p>
+    <h2>Account Deletion</h2>
+    <p>You can permanently delete your Nearby account at any time directly from within the app.</p>
+    <p><strong>To delete your account:</strong></p>
+    <ol>
+      <li>Open the <strong>Nearby</strong> app.</li>
+      <li>Navigate to <strong>My Profile → Name &amp; Password</strong>.</li>
+      <li>Tap <strong>Delete Account</strong> and confirm your choice.</li>
+    </ol>
+    <p>Once confirmed, your account and all associated data — including your name, email, and profile photo — will be permanently deleted from our systems. This process is irreversible.</p>
+    <p>We do not retain any personal data after account deletion, except where required by law (for example, for fraud prevention or accounting compliance). Any such retained data is stored securely and automatically deleted after the applicable retention period.</p>
+    <p>If you experience any issues deleting your account, please contact us at <a class="email-link" href="mailto:nearby.feedback@gmail.com">nearby.feedback@gmail.com</a>.</p>
 
-        <h2>Changes to This Policy</h2>
-        <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes. Continued use of the app after such changes constitutes your acceptance of the new policy.</p>
+    <h2>Children's Privacy</h2>
+    <p>Our service is not directed to individuals under the age of 18. We do not knowingly collect personal information from children.</p>
 
-        <h2>Contact Us</h2>
-        <p>If you have questions about this Privacy Policy, please <a class="email-link" href="mailto:nearby.feedback@gmail.com">contact us</a>.</p>
-    </div>
+    <h2>Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes. Continued use of the app after such changes constitutes your acceptance of the new policy.</p>
+
+    <h2>Contact Us</h2>
+    <p>If you have questions about this Privacy Policy, please <a class="email-link" href="mailto:nearby.feedback@gmail.com">contact us</a>.</p>
+  </main>
 </body>
 </html>
