@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearby | Connect with your village</title>
+    <meta name="description" content="Nearby helps you discover local talent, skills and services right in your neighbourhood. Free to join. Starting in Etobicoke, Toronto.">
+    <meta name="theme-color" content="#2E3192">
+    <meta property="og:title" content="Nearby | Connect with your village">
+    <meta property="og:description" content="Discover the talent, skills and services right in your neighbourhood. Free to join.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="LogoText-transparent-Web-408x408.png">
+    <style>
+        :root {
+            /* Brand backgrounds */
+            --bg-primary: #F7F4FF;
+            --bg-secondary: #FBF5F6;
+            --bg-accent: #FFEEF1;
+
+            /* Brand accents */
+            --purple-dark: #2E3192;
+            --purple-light: #A6A5E8;
+            --fuscia: #FF3366;
+            /* Slightly deeper fuscia for button backgrounds so white text meets contrast guidelines */
+            --fuscia-btn: #E02455;
+
+            /* Text */
+            --text-dark: #424242;
+            --text-light: #5A656E;
+
+            --radius: 20px;
+            --shadow: 0 10px 30px rgba(46, 49, 146, 0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        h1, h2, h3 { color: var(--purple-dark); line-height: 1.2; letter-spacing: -0.02em; }
+        a { color: inherit; }
+        a:focus-visible, .btn:focus-visible { outline: 3px solid var(--fuscia); outline-offset: 3px; }
+
+        .skip-link { position: absolute; left: -999px; top: 0; background: #fff; padding: .5rem 1rem; z-index: 200; }
+        .skip-link:focus { left: 1rem; top: 1rem; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+        section[id] { scroll-margin-top: 80px; }
+
+        /* ---------- Nav ---------- */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(46, 49, 146, 0.08);
+        }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: .9rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+        .brand { font-weight: 700; font-size: 1.25rem; color: var(--purple-dark); text-decoration: none; letter-spacing: -0.02em; }
+        .nav-links { display: flex; align-items: center; gap: 1.75rem; }
+        .nav-links a { text-decoration: none; color: var(--purple-dark); font-weight: 500; transition: color .2s ease; }
+        .nav-links a:hover { color: var(--fuscia-btn); }
+        .nav-links .btn { color: #fff; padding: .55rem 1.25rem; font-size: .95rem; }
+        .nav-links .btn:hover { color: #fff; }
+
+        /* ---------- Buttons ---------- */
+        .btn {
+            display: inline-block; text-decoration: none; font-weight: 700; font-size: 1.05rem;
+            padding: .95rem 2rem; border-radius: 50px; border: 2px solid transparent;
+            transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+            cursor: pointer;
+        }
+        .btn-primary { background: var(--fuscia-btn); color: #fff; box-shadow: 0 4px 10px rgba(224, 36, 85, 0.25); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(224, 36, 85, 0.3); }
+        .btn-outline { background: transparent; color: var(--purple-dark); border-color: var(--purple-dark); }
+        .btn-outline:hover { background: var(--purple-dark); color: #fff; transform: translateY(-2px); }
+        .btn-light { background: #fff; color: var(--purple-dark); }
+        .btn-light:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18); }
+
+        /* ---------- Hero ---------- */
+        .hero { background: linear-gradient(45deg, var(--bg-accent) 0%, var(--bg-primary) 100%); padding: 4rem 0 5rem; overflow: hidden; }
+        .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; }
+        .badge {
+            display: inline-block; background: #fff; color: var(--purple-dark);
+            border: 1px solid var(--purple-light); border-radius: 50px;
+            padding: .35rem 1rem; font-size: .9rem; font-weight: 600; margin-bottom: 1.25rem;
+        }
+        .logo { width: 140px; height: auto; display: block; margin-bottom: 1rem; }
+        .hero h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 700; margin-bottom: 1rem; }
+        .hero h1 .accent { color: var(--fuscia); }
+        .hero .sub { font-size: 1.25rem; color: var(--text-light); margin-bottom: 1.75rem; max-width: 34em; }
+        .hero .lead { font-weight: 700; color: var(--purple-dark); margin-bottom: 1rem; font-size: 1.1rem; }
+        .btn-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.75rem; }
+        .trust { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; list-style: none; color: var(--text-light); font-size: .95rem; }
+        .trust li::before { content: "\2713"; color: var(--fuscia); font-weight: 700; margin-right: .4rem; }
+        .hero-visual { display: flex; justify-content: center; }
+
+        /* ---------- Phone frame (screenshots) ---------- */
+        .phone {
+            position: relative; width: min(260px, 70vw); aspect-ratio: 9 / 19;
+            border: 8px solid var(--purple-dark); border-radius: 36px;
+            background: #fff; box-shadow: var(--shadow); overflow: hidden; flex-shrink: 0;
+        }
+        .phone-placeholder {
+            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 1.5rem; font-weight: 600; font-size: .95rem; color: var(--purple-dark);
+            background: linear-gradient(160deg, var(--bg-accent), var(--bg-primary) 60%, var(--purple-light));
+        }
+        .phone img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        /* ---------- Generic sections ---------- */
+        .section { padding: 5rem 0; }
+        .section-white { background: #fff; }
+        .section-head { text-align: center; max-width: 640px; margin: 0 auto 3rem; }
+        .section-head h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); margin-bottom: .75rem; }
+        .section-head p { color: var(--text-light); font-size: 1.1rem; }
+
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .card { background: var(--bg-primary); padding: 2rem; border-radius: var(--radius); transition: transform .3s ease; }
+        .card:hover { transform: translateY(-5px); }
+        .card .icon { font-size: 2rem; margin-bottom: .75rem; display: block; }
+        .card h3 { font-size: 1.2rem; margin-bottom: .5rem; }
+        .card p { color: var(--text-light); }
+
+        /* ---------- Audience ---------- */
+        .audience { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .aud-card { border-radius: var(--radius); padding: 2.5rem; }
+        .aud-card h3 { font-size: 1.6rem; margin-bottom: .75rem; }
+        .aud-card p { margin-bottom: 1rem; }
+        .aud-card ul { list-style: none; margin-bottom: 1.75rem; }
+        .aud-card li { padding-left: 1.6rem; position: relative; margin-bottom: .4rem; }
+        .aud-card li::before { content: "\2713"; position: absolute; left: 0; font-weight: 700; }
+        .aud-talent { background: var(--purple-dark); color: #fff; }
+        .aud-talent h3 { color: #fff; }
+        .aud-talent li::before { color: var(--purple-light); }
+        .aud-help { background: var(--bg-accent); }
+        .aud-help li::before { color: var(--fuscia-btn); }
+
+        /* ---------- How it works ---------- */
+        .step { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 4rem; }
+        .step:last-child { margin-bottom: 0; }
+        .step.reverse .step-text { order: 2; }
+        .step-visual { display: flex; justify-content: center; }
+        .step-num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 2.75rem; height: 2.75rem; border-radius: 50%;
+            background: var(--fuscia-btn); color: #fff; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;
+        }
+        .step h3 { font-size: 1.8rem; margin-bottom: .75rem; }
+        .step p { color: var(--text-light); font-size: 1.1rem; max-width: 28em; }
+
+        /* ---------- Final CTA ---------- */
+        .final { background: linear-gradient(135deg, var(--purple-dark) 0%, #4A4DB8 100%); color: #fff; text-align: center; padding: 5rem 1.5rem; }
+        .final h2 { color: #fff; font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: .75rem; }
+        .final p { color: #E8E8FF; font-size: 1.15rem; margin-bottom: 2rem; }
+
+        /* ---------- Footer ---------- */
+        footer { background: #23266F; color: #fff; text-align: center; padding: 2.5rem 1.5rem; }
+        footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.75rem; margin-bottom: 1rem; }
+        footer a { color: #fff; text-decoration: none; opacity: .9; }
+        footer a:hover { opacity: 1; text-decoration: underline; }
+        footer small { color: #C9C9F5; }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 800px) {
+            .nav-links a:not(.btn) { display: none; }
+            .hero { padding: 2.5rem 0 3.5rem; }
+            .hero-grid, .step { grid-template-columns: 1fr; gap: 2rem; }
+            .hero-text { text-align: center; }
+            .hero-text .logo { margin-left: auto; margin-right: auto; }
+            .hero .sub { margin-left: auto; margin-right: auto; }
+            .btn-row, .trust { justify-content: center; }
+            .step { text-align: center; margin-bottom: 3rem; }
+            .step p { margin: 0 auto; }
+            .step.reverse .step-text { order: 0; }
+            .section { padding: 3.5rem 0; }
+            .aud-card { padding: 2rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            * { transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <nav aria-label="Main">
+        <div class="nav-inner">
+            <a class="brand" href="index.html">Nearby</a>
+            <div class="nav-links">
+                <a href="#how-it-works">How it works</a>
+                <a href="#get-started">Get started</a>
+                <a class="btn btn-primary" href="#get-app">Get the app</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main">
+
+        <!-- ================= HERO ================= -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <img src="LogoText-transparent-Web-408x408.png" alt="Nearby app logo" class="logo">
+                    <span class="badge">Now starting in Etobicoke, Toronto</span>
+                    <h1>Connect with your <span class="accent">village.</span></h1>
+                    <p class="sub">Discover the talent, skills and services right in your neighbourhood, and the neighbours behind them.</p>
+                    <p class="lead">Got a skill? Neighbours nearby need it. List for free.</p>
+                    <div class="btn-row">
+                        <a href="#get-app" class="btn btn-primary">I offer services</a>
+                        <a href="#get-app" class="btn btn-outline">I'm looking for help</a>
+                    </div>
+                    <ul class="trust">
+                        <li>Free to join</li>
+                        <li>No ads</li>
+                        <li>You choose what's visible</li>
+                    </ul>
+                </div>
+                <div class="hero-visual">
+                    <!-- Screenshot 2 is reused here. Replace/remove as you prefer. -->
+                    <div class="phone">
+                        <div class="phone-placeholder">Add your app screenshot:<br>screens/browse.png</div>
+                        <img src="screens/browse.png" alt="Nearby app screen showing local talents in your neighbourhood" onerror="this.remove()">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= WHY NEARBY ================= -->
+        <section class="section section-white">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Real neighbours, right nearby.</h2>
+                    <p>Nearby starts with where you live, not with a long list of categories.</p>
+                </div>
+                <div class="cards">
+                    <div class="card">
+                        <span class="icon" aria-hidden="true">&#127969;</span>
+                        <h3>Start with your neighbourhood</h3>
+                        <p>See the people and services a few streets away, not across the city.</p>
+                    </div>
+                    <div class="card">
+                        <span class="icon" aria-hidden="true">&#128075;</span>
+                        <h3>Meet the people behind the service</h3>
+                        <p>Contact neighbours directly and agree on the details yourselves.</p>
+                    </div>
+                    <div class="card">
+                        <span class="icon" aria-hidden="true">&#127793;</span>
+                        <h3>Build a stronger community</h3>
+                        <p>Support local talent and small businesses, and keep the value in your neighbourhood.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= AUDIENCE ================= -->
+        <section class="section" id="get-started">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Two ways to be part of your village</h2>
+                    <p>Most neighbours do both over time.</p>
+                </div>
+                <div class="audience">
+                    <div class="aud-card aud-talent">
+                        <h3>Got a skill?</h3>
+                        <p>Neighbours nearby need it. Whether it's a side hustle, a small business or something you're just starting, let the people around you find you.</p>
+                        <ul>
+                            <li>List your services for free</li>
+                            <li>Choose which contact details are visible</li>
+                            <li>Work directly with your neighbours, on your terms</li>
+                        </ul>
+                        <a href="#get-app" class="btn btn-light">List your skills</a>
+                    </div>
+                    <div class="aud-card aud-help">
+                        <h3>Looking for help?</h3>
+                        <p>Find people nearby for everyday tasks and see who is in your neighbourhood before you reach out.</p>
+                        <ul>
+                            <li>Browse local talent in your area</li>
+                            <li>Contact people directly</li>
+                            <li>Support neighbours and small businesses</li>
+                        </ul>
+                        <a href="#get-app" class="btn btn-primary">Find local help</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= HOW IT WORKS ================= -->
+        <section class="section section-white" id="how-it-works">
+            <div class="container">
+                <div class="section-head">
+                    <h2>How it works</h2>
+                    <p>Three simple steps from sign-up to your first connection.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-text">
+                        <span class="step-num">1</span>
+                        <h3>Pick your neighbourhood</h3>
+                        <p>Tell Nearby where you live, so you see what is close by. Your full address is never public, and you decide which details others can see.</p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="phone">
+                            <div class="phone-placeholder">Add your app screenshot:<br>screens/pick.png</div>
+                            <img src="screens/pick.png" alt="Nearby app screen for choosing your neighbourhood" loading="lazy" onerror="this.remove()">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step reverse">
+                    <div class="step-text">
+                        <span class="step-num">2</span>
+                        <h3>Browse or list</h3>
+                        <p>Find help with everyday tasks, or create a free listing for what you do and let neighbours find you.</p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="phone">
+                            <div class="phone-placeholder">Add your app screenshot:<br>screens/browse.png</div>
+                            <img src="screens/browse.png" alt="Nearby app screen showing local talents and services" loading="lazy" onerror="this.remove()">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-text">
+                        <span class="step-num">3</span>
+                        <h3>Connect directly</h3>
+                        <p>Reach out by the contact method a neighbour has chosen to share, and build relationships that make your community stronger.</p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="phone">
+                            <div class="phone-placeholder">Add your app screenshot:<br>screens/connect.png</div>
+                            <img src="screens/connect.png" alt="Nearby app screen showing a talent's profile and contact options" loading="lazy" onerror="this.remove()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= FINAL CTA ================= -->
+        <section class="final" id="get-app">
+            <div class="container">
+                <h2>Ready to meet your village?</h2>
+                <p>Free to join. Starting in Etobicoke, Toronto.</p>
+                <!-- TODO: replace # with your Google Play listing URL -->
+                <a href="#" class="btn btn-light">Get it on Google Play</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="child_safety_policy.html">Child Safety Policy</a>
+            <a href="delete_account.html">Delete Account</a>
+            <!-- TODO: swap for a custom-domain address when ready -->
+            <a href="mailto:nearby.feedback@gmail.com">Contact</a>
+        </div>
+        <small>&copy; 2026 Nearby. All rights reserved.</small>
+    </footer>
+</body>
+</html>
