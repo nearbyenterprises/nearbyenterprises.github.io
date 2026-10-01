@@ -193,8 +193,8 @@
     <section class="hero">
         <div class="hero-content">
             <img src="LogoText-transparent-Web-408x408.png" alt="Nearby App Logo" class="logo">
-            <h1>Connect with Your Neighborhood</h1>
-            <p>Discover local talents and services right at your doorstep</p>
+            <h1>Connect with your village.</h1>
+            <p>Discover the talent, skills and services right in your neighbourhood, and the neighbours behind them. Free to join.</p>
             <a href="#" class="cta-button">Download App</a>
         </div>
     </section>
@@ -202,7 +202,7 @@
     <section class="features">
         <div class="features-grid">
             <div class="feature-card">
-                <h3>Find Local Talent</h3>
+                <h3>Real neighbours</h3>
                 <p>Connect with skilled professionals in your area</p>
             </div>
             <div class="feature-card">
