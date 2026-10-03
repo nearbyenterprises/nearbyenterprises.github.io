@@ -54,7 +54,6 @@
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
         section[id] { scroll-margin-top: 80px; }
-        .aud-card[id] { scroll-margin-top: 100px; }
 
         /* ---------- Nav ---------- */
         nav {
@@ -85,13 +84,7 @@
         /* ---------- Hero ---------- */
         .hero { background: linear-gradient(135deg, var(--bg-selected) 0%, var(--bg-nav) 100%); padding: 4rem 0 5rem; overflow: hidden; }
         .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; }
-        /* Same look as the app's selected tab: pink fill, soft pink border */
-        .badge {
-            display: inline-block; background: var(--bg-selected); color: var(--purple-dark);
-            border: 2px solid var(--pink-soft); border-radius: 14px;
-            padding: .3rem 1rem; font-size: .9rem; font-weight: 600; margin-bottom: 1.25rem;
-        }
-        .logo { width: 150px; height: auto; display: block; margin-bottom: 1rem; }
+        .logo { width: 260px; max-width: 100%; height: auto; display: block; margin: -.5rem 0 1rem -.75rem; }
         /* The headline stays on one line and the size scales down so it always fits its column */
         .hero h1 { font-size: clamp(1.7rem, 3.6vw, 2.6rem); font-weight: 700; margin-bottom: 1.25rem; }
         /* One banner behind the whole headline: lavender on the left fading to pink on the right, behind "village." */
@@ -106,6 +99,7 @@
         }
         .hero .sub { font-size: 1.25rem; color: var(--text-light); margin-bottom: 1.75rem; max-width: 34em; }
         .hero .lead { font-weight: 700; color: var(--purple-dark); margin-bottom: 1rem; font-size: 1.1rem; }
+        .hero .hero-tabs { margin: 0 0 1.75rem; }
         .btn-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.75rem; }
         /* Both hero buttons share one width; colour shows which is primary */
         .btn-row .btn { min-width: 15rem; }
@@ -113,13 +107,15 @@
         .trust li::before { content: "\2713"; color: var(--pink-dark); font-weight: 700; margin-right: .4rem; }
         .hero-visual { display: flex; justify-content: center; }
 
-        /* ---------- Phone frame (screenshots are 1440x2464 after cropping the status bar) ---------- */
+        /* ---------- Phone frame ----------
+           The frame takes its height from the screenshot itself, so any screenshot ratio
+           shows in full: nothing is cropped or stretched. */
         .phone {
-            position: relative; width: min(260px, 70vw); aspect-ratio: 1440 / 2464;
+            position: relative; width: min(280px, 70vw);
             border: 8px solid var(--purple-dark); border-radius: 36px;
             background: var(--bg-app); box-shadow: var(--shadow); overflow: hidden; flex-shrink: 0;
         }
-        .phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+        .phone img { width: 100%; height: auto; display: block; }
 
         /* ---------- Generic sections ---------- */
         .section { padding: 5rem 0; }
@@ -135,28 +131,29 @@
         .card h3 { font-size: 1.2rem; margin-bottom: .5rem; }
         .card p { color: var(--text-light); }
 
-        /* ---------- Audience ---------- */
-        .audience { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 1.5rem; }
-        .aud-card {
-            display: flex; flex-direction: column;
-            border-radius: var(--radius); padding: 2.5rem; transition: box-shadow .3s ease;
-        }
-        .aud-card:target { box-shadow: 0 0 0 4px var(--pink-soft); }
-        .aud-card h3 { font-size: 1.6rem; margin-bottom: .75rem; }
-        .aud-card p { margin-bottom: 1rem; }
-        .aud-card ul { list-style: none; margin-bottom: 1.75rem; }
-        .aud-card li { padding-left: 1.6rem; position: relative; margin-bottom: .4rem; }
-        .aud-card li::before { content: "\2713"; position: absolute; left: 0; font-weight: 700; color: var(--purple-btn); }
-        /* Both buttons sit at the bottom of their card, so they line up */
-        .aud-card .btn { margin-top: auto; align-self: flex-start; min-width: 14rem; }
-        /* Talent card copies the app's lavender info panel, including the purple bar */
-        .aud-talent { background: var(--bg-panel); border: 2px solid transparent; border-left: 6px solid var(--purple-btn); }
-        /* Help card copies the app's selected-tab pink with a soft border */
-        .aud-help { background: var(--bg-selected); border: 2px solid var(--pink-soft); }
-        .aud-help li::before { color: var(--pink-dark); }
+        /* ---------- Two ways: toggle + panels ---------- */
+        .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin: 0 auto 2.5rem; padding: .35rem; width: fit-content; max-width: 100%; background: var(--bg-nav); border: 2px solid #E6E3F7; border-radius: 16px; }
+        .tab { font: inherit; font-weight: 600; font-size: 1rem; color: var(--purple-dark); background: transparent; border: 2px solid transparent; border-radius: 12px; padding: .7rem 1.5rem; cursor: pointer; transition: background-color .2s ease, color .2s ease, box-shadow .2s ease; }
+        .tab { text-align: center; text-decoration: none; display: block; }
+        .tab:hover { background: var(--bg-selected); }
+        .tab.on, .tab[aria-selected="true"] { background: var(--purple-btn); color: #fff; box-shadow: 0 4px 10px rgba(82, 86, 181, 0.28); }
+        .tab.on:hover, .tab[aria-selected="true"]:hover { background: var(--purple-dark); }
+        .tab:focus-visible { outline: 3px solid var(--pink-dark); outline-offset: 2px; }
+        #get-started { scroll-margin-top: 70px; }
+        .panel { margin-bottom: 4rem; }
+        .js .panel { display: none; margin-bottom: 0; }
+        .js .panel.active { display: block; animation: fade .35s ease; }
+        @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+        .panel-intro { text-align: center; max-width: 60rem; margin: 0 auto 3rem; }
+        .panel-intro h3 { font-size: 1.6rem; margin-bottom: .5rem; }
+        .panel-intro p { margin: 0 auto 1.25rem; max-width: 40rem; }
+        .checks { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.5rem; }
+        .checks li { position: relative; padding-left: 1.5rem; text-align: left; }
+        .checks li::before { content: "\2713"; position: absolute; left: 0; font-weight: 700; color: var(--purple-btn); }
+        .panel-help .checks li::before { color: var(--pink-dark); }
 
         /* ---------- How it works (one row) ---------- */
-        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; align-items: start; }
         .step { display: flex; flex-direction: column; align-items: center; text-align: center; }
         .step .phone { width: min(230px, 100%); margin-bottom: 1.5rem; }
         .step-num {
@@ -186,15 +183,16 @@
             .hero { padding: 2.5rem 0 3.5rem; }
             .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
             .steps { grid-template-columns: 1fr; gap: 3rem; }
+            .panel-intro { margin-bottom: 2rem; }
             .hero-text { text-align: center; }
-            .hero-text .logo { margin-left: auto; margin-right: auto; }
+            .hero-text .logo { width: 210px; margin-left: auto; margin-right: auto; }
             .hero .sub { margin-left: auto; margin-right: auto; }
             .hero h1 { font-size: clamp(1.7rem, 6.6vw, 2.6rem); }
             .hero h1 .banner { margin: 0 auto; }
-            .btn-row, .trust { justify-content: center; }
-            .btn-row .btn { width: 100%; max-width: 20rem; }
+            .trust { justify-content: center; }
+            .hero .hero-tabs { margin: 0 auto 1.75rem; }
             .section { padding: 3.5rem 0; }
-            .aud-card { padding: 2rem; }
+            .tab { padding: .65rem 1rem; font-size: .95rem; }
         }
 
         /* On small phones one line would make the headline too small, so it breaks into two lines */
@@ -217,8 +215,7 @@
         <div class="nav-inner">
             <a class="brand" href="index.html">Nearby</a>
             <div class="nav-links">
-                <a href="#how-it-works">How it works</a>
-                <a href="#get-started">Get started</a>
+                <a href="#get-started">How it works</a>
                 <a class="btn btn-primary" href="#get-app">Get the app</a>
             </div>
         </div>
@@ -231,13 +228,12 @@
             <div class="container hero-grid">
                 <div class="hero-text">
                     <img src="LogoText-transparent-Web-408x408.png" alt="Nearby app logo" class="logo">
-                    <span class="badge">Now starting in Etobicoke, Toronto</span>
                     <h1><span class="banner">Connect with <span class="l2">your village.</span></span></h1>
                     <p class="sub">Discover what your neighbourhood has to offer, and become part of its community.</p>
                     <p class="lead">Got a skill? Neighbours nearby need it. List for free.</p>
-                    <div class="btn-row">
-                        <a href="#for-talents" class="btn btn-primary">I offer services</a>
-                        <a href="#for-help" class="btn btn-outline">I'm looking for help</a>
+                    <div class="tabs hero-tabs">
+                        <a href="#for-talents" class="tab on">I offer services</a>
+                        <a href="#for-help" class="tab">I'm looking for help</a>
                     </div>
                     <ul class="trust">
                         <li>Free to join</li>
@@ -247,7 +243,86 @@
                 </div>
                 <div class="hero-visual">
                     <div class="phone">
-                        <img src="screens/1.png" alt="Nearby app home screen listing talents within 3 km, with ratings and distance" width="720" height="1232">
+                        <img src="screens/list.png" alt="Nearby app home screen listing talents within 3 km, with ratings and distance" width="720" height="1232">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TWO WAYS + HOW IT WORKS ================= -->
+        <section class="section" id="get-started">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Two ways to be part of your village</h2>
+                    <p>Offer a skill, find help, or do both.</p>
+                </div>
+
+                <div class="tabs" role="tablist" aria-label="Choose how you'll use Nearby">
+                    <button class="tab" role="tab" id="tab-talents" aria-controls="for-talents" aria-selected="true" type="button">I offer services</button>
+                    <button class="tab" role="tab" id="tab-help" aria-controls="for-help" aria-selected="false" type="button">I'm looking for help</button>
+                </div>
+
+                <div class="panel panel-talent active" id="for-talents" role="tabpanel" aria-labelledby="tab-talents">
+                    <div class="panel-intro">
+                        <h3>Got a skill?</h3>
+                        <p>Neighbours nearby need it. Whether it's a side hustle, a small business or something you're just starting, let the people around you find you.</p>
+                        <ul class="checks">
+                            <li>List your services for free</li>
+                            <li>Choose which contact details are visible</li>
+                            <li>Work directly with your neighbours, on your terms</li>
+                        </ul>
+                    </div>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="phone"><img src="screens/talent-details.webp" alt="Nearby app screen for adding a service with its offerings and prices" loading="lazy" width="720" height="1232"></div>
+                            <span class="step-num">1</span>
+                            <h3>List your services</h3>
+                            <p>Pick a category, then add what you offer and your prices.</p>
+                        </div>
+                        <div class="step">
+                            <div class="phone"><img src="screens/talent-profile.webp" alt="Nearby app talent profile showing contact info, web links and listed services" loading="lazy" width="720" height="1232"></div>
+                            <span class="step-num">2</span>
+                            <h3>Complete your profile</h3>
+                            <p>Add a photo and links, and choose which contact details neighbours can see.</p>
+                        </div>
+                        <div class="step">
+                            <div class="phone"><img src="screens/talent.png" alt="Nearby app talent profile as neighbours see it, with rating, offerings and contact options" loading="lazy" width="720" height="1232"></div>
+                            <span class="step-num">3</span>
+                            <h3>Neighbours find you</h3>
+                            <p>Nearby people see your listing and reach out directly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-help" id="for-help" role="tabpanel" aria-labelledby="tab-help">
+                    <div class="panel-intro">
+                        <h3>Looking for help?</h3>
+                        <p>Find people nearby for everyday tasks and see who is in your neighbourhood before you reach out.</p>
+                        <ul class="checks">
+                            <li>Browse local talent in your area</li>
+                            <li>Check ratings and reviews from neighbours</li>
+                            <li>Contact people directly</li>
+                        </ul>
+                    </div>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="phone"><img src="screens/map.png" alt="Nearby app screen with a map and slider for setting your neighbourhood radius" loading="lazy" width="720" height="1232"></div>
+                            <span class="step-num">1</span>
+                            <h3>Set your neighbourhood</h3>
+                            <p>Choose how far to look, from 1 km to 30 km. Your full address stays private unless you list a skill and choose to share it.</p>
+                        </div>
+                        <div class="step">
+                            <div class="phone"><img src="screens/list.png" alt="Nearby app list of local talent in your neighbourhood" loading="lazy" width="720" height="1232"></div>
+                            <span class="step-num">2</span>
+                            <h3>Browse who&rsquo;s nearby</h3>
+                            <p>See local talent and services around you.</p>
+                        </div>
+                        <div class="step">
+                            <div class="phone"><img src="screens/talent.png" alt="Nearby app talent profile with rating, offerings and contact options" loading="lazy" width="720" height="1232"></div>
+                            <span class="step-num">3</span>
+                            <h3>Check ratings, then reach out</h3>
+                            <p>Contact neighbours directly, on your terms.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -277,77 +352,6 @@
             </div>
         </section>
 
-        <!-- ================= AUDIENCE ================= -->
-        <section class="section" id="get-started">
-            <div class="container">
-                <div class="section-head">
-                    <h2>Two ways to be part of your village</h2>
-                    <p>Offer a skill, find help, or do both.</p>
-                </div>
-                <div class="audience">
-                    <div class="aud-card aud-talent" id="for-talents">
-                        <h3>Got a skill?</h3>
-                        <p>Neighbours nearby need it. Whether it's a side hustle, a small business or something you're just starting, let the people around you find you.</p>
-                        <ul>
-                            <li>List your services for free</li>
-                            <li>Choose which contact details are visible</li>
-                            <li>Work directly with your neighbours, on your terms</li>
-                        </ul>
-                        <a href="#get-app" class="btn btn-primary">List your skills</a>
-                    </div>
-                    <div class="aud-card aud-help" id="for-help">
-                        <h3>Looking for help?</h3>
-                        <p>Find people nearby for everyday tasks and see who is in your neighbourhood before you reach out.</p>
-                        <ul>
-                            <li>Browse local talent in your area</li>
-                            <li>Check ratings and reviews from neighbours</li>
-                            <li>Contact people directly</li>
-                        </ul>
-                        <a href="#get-app" class="btn btn-primary">Find local help</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= HOW IT WORKS ================= -->
-        <section class="section section-tint" id="how-it-works">
-            <div class="container">
-                <div class="section-head">
-                    <h2>How it works</h2>
-                    <p>Three simple steps from sign-up to your first connection.</p>
-                </div>
-
-                <div class="steps">
-                    <div class="step">
-                        <div class="phone">
-                            <img src="screens/3.png" alt="Nearby app screen with a map and slider for setting your neighbourhood radius" loading="lazy" width="720" height="1232">
-                        </div>
-                        <span class="step-num">1</span>
-                        <h3>Set your neighbourhood</h3>
-                        <p>Choose how far to look, from 1 km to 30 km. Your full address stays private unless you list a skill and choose to share it.</p>
-                    </div>
-
-                    <div class="step">
-                        <div class="phone">
-                            <img src="screens/6.png" alt="Nearby app screen for adding your talent details, offerings and prices" loading="lazy" width="720" height="1232">
-                        </div>
-                        <span class="step-num">2</span>
-                        <h3>Browse or list</h3>
-                        <p>Find help nearby, or add what you offer and your prices to a free listing.</p>
-                    </div>
-
-                    <div class="step">
-                        <div class="phone">
-                            <img src="screens/4.png" alt="Nearby app talent profile with rating, offerings and contact options" loading="lazy" width="720" height="1232">
-                        </div>
-                        <span class="step-num">3</span>
-                        <h3>Connect directly</h3>
-                        <p>Check ratings, then reach out.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- ================= FINAL CTA ================= -->
         <section class="final" id="get-app">
             <div class="container">
@@ -370,5 +374,39 @@
         </div>
         <small>&copy; 2026 Nearby. All rights reserved.</small>
     </footer>
+    <script>
+        (function () {
+            document.documentElement.classList.add('js');
+            var tabs = { 'for-talents': document.getElementById('tab-talents'), 'for-help': document.getElementById('tab-help') };
+            function show(id, scroll) {
+                Object.keys(tabs).forEach(function (k) {
+                    var on = k === id;
+                    tabs[k].setAttribute('aria-selected', on);
+                    tabs[k].tabIndex = on ? 0 : -1;
+                    document.getElementById(k).classList.toggle('active', on);
+                });
+                if (scroll) document.getElementById('get-started').scrollIntoView({ behavior: 'smooth' });
+            }
+            Object.keys(tabs).forEach(function (k) {
+                tabs[k].addEventListener('click', function () { show(k, false); history.replaceState(null, '', '#' + k); });
+                tabs[k].addEventListener('keydown', function (e) {
+                    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                        var other = k === 'for-talents' ? 'for-help' : 'for-talents';
+                        show(other, false); tabs[other].focus();
+                    }
+                });
+            });
+            document.querySelectorAll('a[href="#for-talents"], a[href="#for-help"]').forEach(function (a) {
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var id = a.getAttribute('href').slice(1);
+                    show(id, true); history.replaceState(null, '', '#' + id);
+                });
+            });
+            var h = location.hash.slice(1);
+            show(tabs[h] ? h : 'for-talents', false);
+            if (tabs[h]) document.getElementById('get-started').scrollIntoView();
+        })();
+    </script>
 </body>
 </html>
