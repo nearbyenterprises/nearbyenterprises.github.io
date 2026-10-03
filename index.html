@@ -99,7 +99,13 @@
         }
         .hero .sub { font-size: 1.25rem; color: var(--text-light); margin-bottom: 1.75rem; max-width: 34em; }
         .hero .lead { font-weight: 700; color: var(--purple-dark); margin-bottom: 1rem; font-size: 1.1rem; }
-        .hero .hero-tabs { margin: 0 0 1.75rem; }
+        /* Whole text column is centred, so the logo sits on the same axis as the headline */
+        .hero-text { text-align: center; }
+        .hero-text .logo { margin-left: auto; margin-right: auto; }
+        .hero h1 .banner { margin: 0 auto; }
+        .hero .sub { margin-left: auto; margin-right: auto; }
+        .trust { justify-content: center; }
+        .hero .hero-tabs { margin: 0 auto 1.75rem; }
         .btn-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.75rem; }
         /* Both hero buttons share one width; colour shows which is primary */
         .btn-row .btn { min-width: 15rem; }
