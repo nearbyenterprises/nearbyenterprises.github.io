@@ -214,13 +214,14 @@
         /* Very small phones: slightly smaller toggle text so it stays on one line */
         @media (max-width: 380px) {
             .hero .tab { font-size: .82rem; padding: .65rem .2rem; }
+            .hero .lead { font-size: .92rem; }
         }
 
         /* On small phones one line would make the headline too small, so it breaks into two lines */
         @media (max-width: 560px) {
-            .hero h1 { font-size: 2.2rem; }
-            .hero h1 .banner { white-space: normal; }
-            .hero h1 .l2 { display: block; }
+            /* Headline stays on one line and scales with the screen width, so it never dominates the logo and buttons */
+            .hero h1 { font-size: clamp(1.1rem, calc((100vw - 56px) / 13.8), 2rem); }
+            .hero .lead .nb { display: block; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -251,7 +252,7 @@
                     <img src="LogoText-transparent-Web-408x408.png" alt="Nearby app logo" class="logo">
                     <h1><span class="banner">Connect with <span class="l2">your village.</span></span></h1>
                     <p class="sub">Discover what your neighbourhood has to offer, and become part of its community.</p>
-                    <p class="lead">Got a skill? Neighbours nearby need it. List for free.</p>
+                    <p class="lead"><span class="nb">Got a skill? Neighbours nearby need it.</span> <span class="nb">List for free.</span></p>
                     <div class="tabs hero-tabs">
                         <a href="#for-talents" class="tab on">I offer services</a>
                         <a href="#for-help" class="tab">I'm looking for help</a>
