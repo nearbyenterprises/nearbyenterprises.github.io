@@ -118,7 +118,7 @@
            shows in full: nothing is cropped or stretched. */
         .phone {
             position: relative; width: min(280px, 70vw);
-            border: 8px solid var(--purple-dark); border-radius: 36px;
+            border: 4px solid var(--purple-dark); border-radius: 22px;
             background: var(--bg-app); box-shadow: var(--shadow); overflow: hidden; flex-shrink: 0;
         }
         .phone img { width: 100%; height: auto; display: block; }
@@ -188,7 +188,6 @@
             .nav-links a:not(.btn) { display: none; }
             .hero { padding: 2.5rem 0 3.5rem; }
             .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .steps { grid-template-columns: 1fr; gap: 3rem; }
             .panel-intro { margin-bottom: 2rem; }
             .hero-text { text-align: center; }
             .hero-text .logo { width: 210px; margin-left: auto; margin-right: auto; }
@@ -199,6 +198,22 @@
             .hero .hero-tabs { margin: 0 auto 1.75rem; }
             .section { padding: 3.5rem 0; }
             .tab { padding: .65rem 1rem; font-size: .95rem; }
+            /* ---- Mobile polish: shorter first screen, swipeable steps ---- */
+            .hero-text .logo { width: 150px; margin-bottom: .5rem; }
+            .hero .sub { font-size: 1.05rem; margin-bottom: 1.1rem; line-height: 1.55; }
+            .hero .lead { font-size: 1rem; margin-bottom: .9rem; }
+            .hero h1 { margin-bottom: 1rem; }
+            .hero .hero-tabs { margin-bottom: 1.25rem; }
+            .hero .tab { padding: .65rem .4rem; font-size: .9rem; }
+            .card { padding: 1.4rem; }
+            .steps { display: flex; grid-template-columns: none; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -1.5rem; padding: 0 1.5rem 1.5rem; scroll-padding: 0 1.5rem; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+            .steps::-webkit-scrollbar { display: none; }
+            .step { flex: 0 0 72%; scroll-snap-align: center; }
+        }
+
+        /* Very small phones: slightly smaller toggle text so it stays on one line */
+        @media (max-width: 380px) {
+            .hero .tab { font-size: .82rem; padding: .65rem .2rem; }
         }
 
         /* On small phones one line would make the headline too small, so it breaks into two lines */
