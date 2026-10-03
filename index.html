@@ -95,7 +95,7 @@
             white-space: nowrap;
             padding: .15em .4em .2em;
             border-radius: .4em;
-            background: linear-gradient(90deg, var(--bg-panel) 0%, var(--bg-panel) 30%, var(--pink-soft) 100%);
+            background: linear-gradient(90deg, rgba(211, 210, 244, .7) 0%, rgba(211, 210, 244, .7) 30%, rgba(246, 169, 189, .6) 100%);
         }
         .hero .sub { font-size: 1.25rem; color: var(--text-light); margin-bottom: 1.75rem; max-width: 34em; }
         .hero .lead { font-weight: 700; color: var(--purple-dark); margin-bottom: 1rem; font-size: 1.1rem; }
@@ -192,8 +192,10 @@
             .hero-text { text-align: center; }
             .hero-text .logo { width: 210px; margin-left: auto; margin-right: auto; }
             .hero .sub { margin-left: auto; margin-right: auto; }
-            .hero h1 { font-size: clamp(1.7rem, 6.6vw, 2.6rem); }
-            .hero h1 .banner { margin: 0 auto; }
+            /* Banner and toggle share one width so the column reads as a unit; the headline scales to fit the banner */
+            .hero h1 { font-size: calc(min(100vw - 48px, 26rem) / 14.2); }
+            .hero h1 .banner { margin: 0 auto; width: min(100%, 26rem); text-align: center; padding-left: 0; padding-right: 0; }
+            .hero .hero-tabs { width: min(100%, 26rem); }
             .trust { justify-content: center; }
             .hero .hero-tabs { margin: 0 auto 1.75rem; }
             .section { padding: 3.5rem 0; }
@@ -218,8 +220,6 @@
 
         /* On small phones one line would make the headline too small, so it breaks into two lines */
         @media (max-width: 560px) {
-            /* Headline stays on one line and scales with the screen width, so it never dominates the logo and buttons */
-            .hero h1 { font-size: clamp(1.1rem, calc((100vw - 56px) / 13.8), 2rem); }
             .hero .lead .nb { display: block; }
         }
 
