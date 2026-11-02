@@ -231,6 +231,14 @@
         dialog#notify.sent .done { display: block; }
         dialog#notify.sent form, dialog#notify.sent .intro { display: none; }
 
+        /* ---------- Services list ---------- */
+        .services { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        @media (min-width: 900px) { .services { grid-template-columns: repeat(5, 1fr); } }
+        #services .section-head { max-width: 900px; }
+        .services li { background: #fff; padding: 1.1rem 1.1rem 1.2rem; border-radius: var(--radius); box-shadow: var(--card-shadow); }
+        .services strong { display: block; color: var(--purple-dark); font-size: 1.05rem; line-height: 1.25; margin-bottom: .4rem; }
+        .services span { display: block; color: var(--text-light); font-size: .95rem; line-height: 1.45; }
+
         /* ---------- Responsive ---------- */
         @media (max-width: 800px) {
             .nav-links a:not(.btn) { display: none; }
@@ -399,8 +407,29 @@
             </div>
         </section>
 
+        <!-- ================= SERVICES ================= -->
+        <section class="section section-tint" id="services">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Services neighbours can list and find</h2>
+                </div>
+                <ul class="services">
+                    <li><strong>Childcare</strong><span>babysitters, nannies, after-school care</span></li>
+                    <li><strong>Cleaning</strong><span>house cleaning, organizing, laundry help</span></li>
+                    <li><strong>Home repairs</strong><span>handyman, furniture assembly, painting</span></li>
+                    <li><strong>Yard &amp; snow</strong><span>lawn care, gardening, snow shovelling</span></li>
+                    <li><strong>Pet care</strong><span>dog walking, pet sitting, grooming</span></li>
+                    <li><strong>Tutoring &amp; lessons</strong><span>math tutoring, language lessons, music lessons</span></li>
+                    <li><strong>Home cooking</strong><span>meal prep, baking, catering</span></li>
+                    <li><strong>Sewing &amp; beauty</strong><span>alterations, tailoring, hair, nails</span></li>
+                    <li><strong>Senior care</strong><span>companionship, errands, rides to appointments</span></li>
+                    <li><strong>Tech &amp; career help</strong><span>computer help, resume writing, admin support</span></li>
+                </ul>
+            </div>
+        </section>
+
         <!-- ================= WHY NEARBY ================= -->
-        <section class="section section-tint">
+        <section class="section">
             <div class="container">
                 <div class="section-head">
                     <h2>Real neighbours, right nearby.</h2>
