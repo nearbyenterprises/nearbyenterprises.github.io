@@ -183,6 +183,54 @@
         footer a:hover { text-decoration: underline; }
         footer small { color: var(--text-light); }
 
+        /* ---------- App button labels + iPhone "Get notified" pop-up ---------- */
+        .lbl-short { display: none; }
+        .final .lbl-long { display: inline; }
+        .final .lbl-short { display: none !important; }
+        .final .ios-note { margin: 1.1rem 0 0; font-size: .95rem; color: var(--text-light); }
+        .final .ios-note a { color: var(--purple-dark); font-weight: 600; text-underline-offset: 3px; }
+        @media (max-width: 480px) {
+            nav .lbl-long { display: none; }
+            nav .lbl-short { display: inline; }
+        }
+
+        /* iPhone-only strip at the very top of the page */
+        .ios-banner { display: none; background: var(--purple-dark); color: #fff; text-align: center; padding: .6rem 1rem; font-size: .95rem; line-height: 1.35; }
+        .ios-banner button { font: inherit; font-weight: 700; color: #fff; background: none; border: none; padding: 0; margin-left: .35rem; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+        .ios-banner button:focus-visible { outline: 3px solid var(--pink-soft); outline-offset: 3px; }
+        .is-ios .ios-banner { display: block; }
+
+        .is-ios .nav-links .nav-ios { display: none; }
+
+        dialog#notify {
+            border: none; border-radius: 20px; padding: 2rem 1.75rem 1.75rem;
+            width: calc(100% - 2rem); max-width: 26rem; margin: auto;
+            background: #fff; color: var(--text-dark); box-shadow: 0 20px 50px rgba(46, 49, 146, 0.3);
+        }
+        dialog#notify::backdrop { background: rgba(46, 49, 146, 0.35); }
+        dialog#notify h2 { font-size: 1.5rem; margin-bottom: .6rem; padding-right: 2rem; }
+        dialog#notify p { margin-bottom: 1rem; }
+        dialog#notify .close {
+            position: absolute; top: .6rem; right: .6rem; width: 2.5rem; height: 2.5rem;
+            border: none; border-radius: 12px; background: transparent; color: var(--purple-dark);
+            font-size: 1.6rem; line-height: 1; cursor: pointer;
+        }
+        dialog#notify .close:hover { background: var(--bg-selected); }
+        dialog#notify label { display: block; font-weight: 600; color: var(--purple-dark); margin-bottom: .35rem; }
+        dialog#notify input[type="email"] {
+            width: 100%; font: inherit; padding: .8rem 1rem; border: 2px solid #D9D6F0; border-radius: 12px;
+            background: #fff; color: var(--text-dark); margin-bottom: 1rem;
+        }
+        dialog#notify input[type="email"]:focus { outline: 3px solid var(--purple-light); outline-offset: 1px; border-color: var(--purple-btn); }
+        dialog#notify .btn { width: 100%; }
+        dialog#notify .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+        dialog#notify .fine { font-size: .85rem; color: var(--text-light); margin: 1rem 0 0; }
+        dialog#notify .fine a { color: var(--purple-btn); }
+        dialog#notify .status { min-height: 1.4em; margin: -.25rem 0 .75rem; font-size: .95rem; color: var(--pink-dark); }
+        dialog#notify .done { display: none; text-align: center; padding: .5rem 0; }
+        dialog#notify.sent .done { display: block; }
+        dialog#notify.sent form, dialog#notify.sent .intro { display: none; }
+
         /* ---------- Responsive ---------- */
         @media (max-width: 800px) {
             .nav-links a:not(.btn) { display: none; }
@@ -232,12 +280,15 @@
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
+    <div class="ios-banner">Coming soon to iPhone. <button type="button" data-notify-btn>Get notified</button></div>
+
     <nav aria-label="Main">
         <div class="nav-inner">
             <a class="brand" href="index.html">Nearby Village</a>
             <div class="nav-links">
                 <a href="#get-started">How it works</a>
-                <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.rise.nearby">Get the app</a>
+                <a class="nav-ios" href="#notify" data-notify>iPhone user? Get notified</a>
+                <a class="btn btn-primary" data-app-link href="https://play.google.com/store/apps/details?id=com.rise.nearby"><span class="lbl-long">Get it on Google Play</span><span class="lbl-short">Google Play</span></a>
             </div>
         </div>
     </nav>
@@ -377,8 +428,8 @@
             <div class="container">
                 <h2>Ready to meet your village?</h2>
                 <p>Free to join. Starting in Etobicoke, Toronto.</p>
-                <!-- TODO: replace # with your Google Play listing URL -->
-                <a href="https://play.google.com/store/apps/details?id=com.rise.nearby" class="btn btn-primary">Get it on Google Play</a>
+                <a class="btn btn-primary" data-app-link href="https://play.google.com/store/apps/details?id=com.rise.nearby"><span class="lbl-long">Get it on Google Play</span><span class="lbl-short">Get it on Google Play</span></a>
+                <p class="ios-note">On iPhone? <a href="#notify" data-notify>Get notified</a> when it's ready.</p>
             </div>
         </section>
 
@@ -426,6 +477,111 @@
             var h = location.hash.slice(1);
             show(tabs[h] ? h : 'for-talents', false);
             if (tabs[h]) document.getElementById('get-started').scrollIntoView();
+        })();
+    </script>
+    <dialog id="notify" aria-labelledby="notify-title">
+        <button type="button" class="close" aria-label="Close">&times;</button>
+        <div class="intro">
+            <h2 id="notify-title">Coming soon to iPhone</h2>
+            <p>We'll let you know as soon as Nearby Village is available on the App Store.</p>
+        </div>
+        <form id="notify-form" novalidate>
+            <label for="notify-email">Your email</label>
+            <input type="email" id="notify-email" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
+            <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+            <p class="status" id="notify-status" role="status" aria-live="polite"></p>
+            <button type="submit" class="btn btn-primary">Notify me</button>
+            <p class="fine">We'll send one email when it's ready, and nothing else. You can unsubscribe at any time. See our <a href="privacy.html#email-signup">Privacy Policy</a>.</p>
+        </form>
+        <div class="done" role="status">
+            <h2>You're on the list!</h2>
+            <p>Thank you. We'll email you as soon as Nearby Village is on the App Store.</p>
+            <button type="button" class="btn btn-primary close-done">Close</button>
+        </div>
+    </dialog>
+    <script>
+        /* App links and the iPhone "Get notified" pop-up */
+        (function () {
+            /* ---- SETTINGS: fill these in ---- */
+            var CONFIG = {
+                playUrl: 'https://play.google.com/store/apps/details?id=com.rise.nearby',            /* your Google Play listing URL, e.g. https://play.google.com/store/apps/details?id=... */
+                firebase: { projectId: 'nearby-ios-85bf2', apiKey: 'AIzaSyARjsWOo3f2gd5XRJ0lJ5teA9H68BiLJgk' }   /* from Firebase console > Project settings > Your apps > Web app */
+            };
+
+            var ua = navigator.userAgent || '';
+            var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            if (isIOS) document.documentElement.classList.add('is-ios');
+            var dlg = document.getElementById('notify');
+            var form = document.getElementById('notify-form');
+            var email = document.getElementById('notify-email');
+            var status = document.getElementById('notify-status');
+
+            function openDialog(e) {
+                if (e) e.preventDefault();
+                if (dlg.showModal) { dlg.showModal(); } else { dlg.setAttribute('open', ''); }
+                setTimeout(function () { email.focus(); }, 50);
+            }
+            function closeDialog() { if (dlg.close) { dlg.close(); } else { dlg.removeAttribute('open'); } }
+
+            /* Android, desktop and everything else: straight to Google Play. iPhone/iPad: "Get notified". */
+            document.querySelectorAll('[data-app-link]').forEach(function (a) {
+                if (isIOS) {
+                    a.setAttribute('href', '#notify');
+                    a.innerHTML = '<span class="lbl-long">Get notified</span><span class="lbl-short">Get notified</span>';
+                    a.addEventListener('click', openDialog);
+                } else if (CONFIG.playUrl) {
+                    a.setAttribute('href', CONFIG.playUrl);
+                }
+            });
+            document.querySelectorAll('.ios-note').forEach(function (n) { if (isIOS) n.style.display = 'none'; });
+            document.querySelectorAll('[data-notify-btn]').forEach(function (b) { b.addEventListener('click', openDialog); });
+            document.querySelectorAll('a[data-notify]').forEach(function (a) { a.addEventListener('click', openDialog); });
+
+            if (location.hash === '#notify') openDialog();   /* arriving from the other pages' menu */
+            dlg.querySelector('.close').addEventListener('click', closeDialog);
+            dlg.querySelector('.close-done').addEventListener('click', closeDialog);
+            dlg.addEventListener('click', function (e) { if (e.target === dlg) closeDialog(); });
+            dlg.addEventListener('close', function () { dlg.classList.remove('sent'); status.textContent = ''; form.reset(); });
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var value = email.value.trim().toLowerCase();
+                status.textContent = '';
+                if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value) || value.length > 254) {
+                    status.textContent = 'Please enter a valid email address.';
+                    email.focus();
+                    return;
+                }
+                if (form.elements.website.value) { dlg.classList.add('sent'); return; }   /* hidden field filled in: a bot */
+                var fb = CONFIG.firebase;
+                if (!fb.projectId || !fb.apiKey) {
+                    console.warn('Email sign-up is not configured yet (CONFIG.firebase).');
+                    status.textContent = 'Sign-up is not available just yet. Please check back soon.';
+                    return;
+                }
+                var btn = form.querySelector('button[type="submit"]');
+                btn.disabled = true;
+                var url = 'https://firestore.googleapis.com/v1/projects/' + encodeURIComponent(fb.projectId) +
+                    '/databases/(default)/documents/waitList?documentId=' + encodeURIComponent(value) +
+                    '&key=' + encodeURIComponent(fb.apiKey);
+                fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ fields: {
+                        email: { stringValue: value },
+                        source: { stringValue: 'website' },
+                        consent: { stringValue: 'Email me once when Nearby Village is available on the App Store' },
+                        createdAt: { timestampValue: new Date().toISOString() }
+                    } })
+                }).then(function (r) {
+                    /* 403/409 means this address is already on the list. We show the same thank-you, so nobody can check who is on it. */
+                    if (r.ok || r.status === 403 || r.status === 409) { dlg.classList.add('sent'); }
+                    else { throw new Error('HTTP ' + r.status); }
+                }).catch(function (err) {
+                    console.warn('Sign-up failed', err);
+                    status.textContent = 'Something went wrong. Please try again in a moment.';
+                }).then(function () { btn.disabled = false; });
+            });
         })();
     </script>
     <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25209b9ceb5647c0b08dbc9ea81604d3"}'></script><!-- End Cloudflare Web Analytics -->
